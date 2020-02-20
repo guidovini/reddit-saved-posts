@@ -1,9 +1,9 @@
 const axiosHelper = require('./axios');
 
-const savePost = async (postName) => {
+const savePost = async (name) => {
   await axiosHelper({
     method: 'POST',
-    url: `/api/save?id=${postname}`
+    url: `/api/save?id=${name}`,
   });
   return true;
 };

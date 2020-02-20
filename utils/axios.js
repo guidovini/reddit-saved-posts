@@ -6,8 +6,8 @@ const { TOKEN, URL } = require('../constants');
 const axiosInstance = axios.create({
   baseURL: URL,
   headers: {
-    Authorization: `Bearer ${TOKEN}`
-  }
+    Authorization: `Bearer ${TOKEN}`,
+  },
 });
 
 const axiosHelper = async (config) => {

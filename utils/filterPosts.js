@@ -19,14 +19,14 @@ const filterPosts = (posts = [], subreddits = []) => {
     // .filter((post) => post.data.subreddit === subreddit)
     .map(
       ({
-        data: { title, name, subreddit, permalink, created_utc, score }
+        data: { title, name, subreddit, permalink, created_utc, score },
       }) => ({
         title,
         name,
         subreddit,
         permalink,
         created_utc,
-        score
+        score,
       })
     );
 

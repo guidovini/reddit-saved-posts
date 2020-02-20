@@ -3,7 +3,7 @@ const axiosHelper = require('./axios');
 const fetchMultis = async () => {
   const data = await axiosHelper({
     method: 'GET',
-    url: `/api/multi/mine`
+    url: '/api/multi/mine',
   });
   return data;
 };

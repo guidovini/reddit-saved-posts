@@ -1,5 +1,5 @@
 const formatPosts = (posts, postsPerBatch) => {
-  let formattedPosts = [];
+  const formattedPosts = [];
   let formattedPostsLength = 0;
 
   posts.map(({ permalink, title }) => {

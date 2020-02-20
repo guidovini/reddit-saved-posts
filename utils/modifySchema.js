@@ -47,7 +47,7 @@ const createNewSchema = async (schema) => {
 };
 
 const modifySchema = (newSchema) => {
-  let data = JSON.stringify(newSchema);
+  const data = JSON.stringify(newSchema);
   fs.writeFileSync('./utils/schema.json', data);
   console.log('New Schema created at schema.json');
 };

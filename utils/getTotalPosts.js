@@ -1,7 +1,7 @@
 const fetchPosts = require('./fetchPosts');
 const filterPosts = require('./filterPosts');
 
-let selectedPosts = [];
+const selectedPosts = [];
 
 const getTotalPosts = async (totalPosts = 80, subreddits = [], after = '') => {
   const posts = await fetchPosts({ after });
