@@ -1,12 +1,18 @@
+const currentDate = Date.now() / 1000; // in seconds
+// Date.now() returns in milliseconds, we need in seconds.
+
+const dateOffset = 60 * 60 * 24 * 15; // 15 days
+const setDate = Math.floor(currentDate) - dateOffset;
+
 const filterPosts = (posts = [], subreddits = []) => {
   const postsFilteredBySubreddit = [];
   let next = '';
 
-  posts.map((post) =>
-    subreddits.includes(post.data.subreddit)
+  posts.map((post) => {
+    subreddits.includes(post.data.subreddit) && post.data.created_utc < setDate
       ? postsFilteredBySubreddit.push(post)
-      : null
-  );
+      : null;
+  });
 
   if (postsFilteredBySubreddit.length === 0) {
     next = posts[posts.length - 1].data.name;
