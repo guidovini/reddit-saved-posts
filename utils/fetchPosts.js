@@ -5,12 +5,16 @@ const fetchPosts = async ({
   username = 'guidosantillan01',
   limit = 10, // 10
 } = {}) => {
-  const data = await axiosHelper({
-    method: 'GET',
-    url: `/user/${username}/saved?after=${after}&limit=${limit}`,
-  });
-  const posts = data.data.children;
-  return posts;
+  try {
+    const data = await axiosHelper({
+      method: 'GET',
+      url: `/user/${username}/saved?after=${after}&limit=${limit}`,
+    });
+    const posts = data.data.children;
+    return posts;
+  } catch (error) {
+    console.log('Error at fetchPosts.js');
+  }
 };
 
 module.exports = fetchPosts;
