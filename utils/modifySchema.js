@@ -3,7 +3,7 @@ const fs = require('fs');
 const fetchMultis = require('./fetchMultis');
 const filterMultis = require('./filterMultis');
 
-const schema = require('./schema.json');
+const schemaFile = require('./schema.json');
 
 // const filteredMultis = [
 //   {
@@ -52,4 +52,4 @@ const modifySchema = (newSchema) => {
   console.log('New Schema created at schema.json');
 };
 
-createNewSchema(schema).then((res) => modifySchema(res));
+createNewSchema(schemaFile).then((res) => modifySchema(res));

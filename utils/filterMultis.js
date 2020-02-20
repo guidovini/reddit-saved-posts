@@ -1,5 +1,5 @@
 const filterMultis = (multis = []) => {
-  let filteredMultis = [];
+  const filteredMultis = [];
   multis.map((multi) => {
     filteredMultis.push({
       name: multi.data.name,
