@@ -12,10 +12,22 @@ const totalPosts = batch * postsPerBatch;
 // const totalPosts = 30;
 
 const startRoutine = async (totalPosts, categories, postsPerBatch) => {
+  console.log('Getting subreddits...');
   const subreddits = filterSubreddits(categories);
+
+  console.log('Getting totalPosts...');
   const posts = await getTotalPosts(totalPosts, subreddits);
+
+  console.log('Formatting posts...');
   const formattedPosts = formatPosts(posts, postsPerBatch);
+
+  console.log('Saving posts to file...');
   saveToFile(categories, formattedPosts);
+
+  // console.log(posts);
+
+  // !!
+  // console.log('Unsaving posts from reddit...');
   // unsaveListPosts(posts);
 };
 
