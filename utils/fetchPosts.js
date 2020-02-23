@@ -13,7 +13,8 @@ const fetchPosts = async ({
     const posts = data.data.children;
     return posts;
   } catch (error) {
-    console.log('Error at fetchPosts.js');
+    console.log('Error at fetchPosts.js: ', error.response.data.message);
+    return [];
   }
 };
 
