@@ -15,9 +15,7 @@ const axiosHelper = async (config) => {
     const response = await axiosInstance(config);
     return response.data;
   } catch (error) {
-    console.log('Error at axios.js');
-    console.log(error);
-    // console.log(error);
+    console.log('Error at axios.js: ', error.response.data.message);
   }
 };
 
