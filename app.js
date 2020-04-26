@@ -27,8 +27,8 @@ const startRoutine = async (totalPosts, categories, postsPerBatch) => {
   // console.log(posts);
 
   // !!
-  // console.log('Unsaving posts from reddit...');
-  // unsaveListPosts(posts);
+  console.log('Unsaving posts from reddit...');
+  unsaveListPosts(posts);
 };
 
 startRoutine(totalPosts, categories, postsPerBatch);
