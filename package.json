@@ -4,11 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.1"
+    "axios": "^0.19.1",
+    "dotenv": "^8.2.0"
   },
   "scripts": {
     "get-token": "node ./utils/getToken.js",
-    "start": "node ./app.js",
+    "start": "npm run get-token && node ./app.js",
     "create-schema": "node ./modifySchema.js",
     "test": "jest --watchAll"
   },
