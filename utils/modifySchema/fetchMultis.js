@@ -1,4 +1,4 @@
-const axiosHelper = require('./axios');
+const axiosHelper = require('../axiosHelper');
 
 const fetchMultis = async () => {
   const data = await axiosHelper({

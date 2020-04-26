@@ -1,7 +1,7 @@
 const axios = require('axios');
 const fs = require('fs');
 
-const { USERNAME, PASSWORD, AUTH_BASIC_TOKEN } = require('../constants');
+const { USERNAME, PASSWORD, AUTH_BASIC_TOKEN } = require('../../constants');
 
 const saveToken = (token = '') => {
   fs.writeFile('./.env', `TOKEN=${token}`, (err) => {

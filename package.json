@@ -8,10 +8,10 @@
     "dotenv": "^8.2.0"
   },
   "scripts": {
-    "get-token": "node ./utils/getToken.js",
+    "get-token": "node ./utils/auth/getToken.js",
     "start": "npm run get-token && node ./app.js",
-    "create-schema": "node ./modifySchema.js",
-    "test": "jest --watchAll"
+    "create-schema": "node ./utils/modifySchema/modifySchema.js",
+    "test": "jest --watchAll --silent"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.9.0",

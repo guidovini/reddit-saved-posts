@@ -3,7 +3,7 @@ const fs = require('fs');
 const fetchMultis = require('./fetchMultis');
 const filterMultis = require('./filterMultis');
 
-const schemaFile = require('./schema.json');
+const schemaFile = require('../../data/schema.json');
 
 // const filteredMultis = [
 //   {
@@ -48,8 +48,8 @@ const createNewSchema = async (schema) => {
 
 const modifySchema = (newSchema) => {
   const data = JSON.stringify(newSchema);
-  fs.writeFileSync('./utils/schema.json', data);
-  console.log('New Schema created at schema.json');
+  fs.writeFileSync('./data/schema.json', data);
+  console.log('New Schema created at ./data/schema.json');
 };
 
 createNewSchema(schemaFile).then((res) => modifySchema(res));
