@@ -13,8 +13,7 @@ const setDate = Math.floor(currentDate) - dateOffset;
         permalink @string,
         created_utc @int,
         score @int,
- * subreddits @array ""
- * @returns [[{}, ...], string ]
+ * @returns [{}, ...],
 */
 
 const filterPosts = ({ posts = [], subreddits = [] } = {}) => {
