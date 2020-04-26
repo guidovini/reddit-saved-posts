@@ -4,6 +4,8 @@ const formatPosts = require('./utils/formatPosts');
 const saveToFile = require('./utils/saveToFile');
 const unsaveListPosts = require('./utils/unsaveListPosts');
 
+const SCHEMA = require('./data/schema.json');
+
 const categories = 'dev'; // ['dev', 'business', 'life']
 const batch = 5;
 const postsPerBatch = 20;
@@ -13,7 +15,7 @@ const totalPosts = batch * postsPerBatch;
 
 const startRoutine = async (totalPosts, categories, postsPerBatch) => {
   console.log('Getting subreddits...');
-  const subreddits = filterSubreddits(categories);
+  const subreddits = filterSubreddits({ categories, SCHEMA });
 
   console.log('Getting totalPosts...');
   const posts = await getTotalPosts(totalPosts, subreddits);
