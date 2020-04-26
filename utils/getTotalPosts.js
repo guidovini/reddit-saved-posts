@@ -1,5 +1,6 @@
 const fetchPosts = require('./fetchPosts');
 const filterPosts = require('./filterPosts');
+const calculateNextIndex = require('./calculateNextIndex');
 
 const selectedPosts = [];
 
@@ -9,7 +10,8 @@ const getTotalPosts = async (totalPosts = 80, subreddits = [], after = '') => {
     const posts = await fetchPosts({ after });
 
     console.log('     Filtering posts by subreddit...');
-    const [filteredPosts, next] = filterPosts({ posts, subreddits });
+    const filteredPosts = filterPosts({ posts, subreddits });
+    const next = calculateNextIndex({ posts, filteredPosts });
 
     selectedPosts.push(...filteredPosts);
     console.log('      ', selectedPosts.length);

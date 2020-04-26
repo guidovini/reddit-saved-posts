@@ -18,7 +18,7 @@ const setDate = Math.floor(currentDate) - dateOffset;
 */
 
 const filterPosts = ({ posts = [], subreddits = [] } = {}) => {
-  const postsFilteredBySubreddit = posts
+  return posts
     .filter(
       (post) =>
         subreddits.includes(post.data.subreddit) &&
@@ -36,17 +36,6 @@ const filterPosts = ({ posts = [], subreddits = [] } = {}) => {
         score,
       })
     );
-
-  let next = '';
-
-  if (postsFilteredBySubreddit.length === 0) {
-    next = posts[posts.length - 1]?.data.name || '';
-  } else {
-    next =
-      postsFilteredBySubreddit[postsFilteredBySubreddit.length - 1].name || '';
-  }
-
-  return [postsFilteredBySubreddit, next];
 };
 
 module.exports = filterPosts;
