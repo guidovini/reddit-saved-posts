@@ -9,7 +9,7 @@ const getTotalPosts = async (totalPosts = 80, subreddits = [], after = '') => {
     const posts = await fetchPosts({ after });
 
     console.log('     Filtering posts by subreddit...');
-    const [filteredPosts, next] = filterPosts(posts, subreddits);
+    const [filteredPosts, next] = filterPosts({ posts, subreddits });
 
     selectedPosts.push(...filteredPosts);
     console.log('      ', selectedPosts.length);

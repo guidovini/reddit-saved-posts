@@ -1,28 +1,29 @@
-const currentDate = Date.now() / 1000; // in seconds
 // Date.now() returns in milliseconds, we need in seconds.
+const currentDate = Date.now() / 1000; // in seconds
 
 const dateOffset = 60 * 60 * 24 * 15; // 15 days
 const setDate = Math.floor(currentDate) - dateOffset;
 
-const filterPosts = (posts = [], subreddits = []) => {
-  const postsFilteredBySubreddit = [];
-  let next = '';
+/*
+ * posts @array {}
+ * * data
+ * * *  title @string,
+        name @string,
+        subreddit @string,
+        permalink @string,
+        created_utc @int,
+        score @int,
+ * subreddits @array ""
+ * @returns [[{}, ...], string ]
+*/
 
-  posts.map((post) => {
-    subreddits.includes(post.data.subreddit) && post.data.created_utc < setDate
-      ? postsFilteredBySubreddit.push(post)
-      : null;
-  });
-
-  if (postsFilteredBySubreddit.length === 0) {
-    next = posts[posts.length - 1].data.name;
-  } else {
-    next =
-      postsFilteredBySubreddit[postsFilteredBySubreddit.length - 1].data.name;
-  }
-
-  const filteredPosts = postsFilteredBySubreddit
-    // .filter((post) => post.data.subreddit === subreddit)
+const filterPosts = ({ posts = [], subreddits = [] } = {}) => {
+  const postsFilteredBySubreddit = posts
+    .filter(
+      (post) =>
+        subreddits.includes(post.data.subreddit) &&
+        post.data.created_utc < setDate
+    )
     .map(
       ({
         data: { title, name, subreddit, permalink, created_utc, score },
@@ -36,7 +37,16 @@ const filterPosts = (posts = [], subreddits = []) => {
       })
     );
 
-  return [filteredPosts, next];
+  let next = '';
+
+  if (postsFilteredBySubreddit.length === 0) {
+    next = posts[posts.length - 1]?.data.name || '';
+  } else {
+    next =
+      postsFilteredBySubreddit[postsFilteredBySubreddit.length - 1].name || '';
+  }
+
+  return [postsFilteredBySubreddit, next];
 };
 
 module.exports = filterPosts;
