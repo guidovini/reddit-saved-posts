@@ -2,13 +2,13 @@ const axiosHelper = require('./axiosHelper');
 
 const fetchPosts = async ({
   after = '',
-  username = 'guidosantillan01',
   limit = 10, // 10
 } = {}) => {
+  console.log('     Fetching posts...');
   try {
     const data = await axiosHelper({
       method: 'GET',
-      url: `/user/${username}/saved?after=${after}&limit=${limit}`,
+      url: `/user/guidosantillan01/saved?after=${after}&limit=${limit}`,
     });
     const posts = data.data.children;
     return posts;

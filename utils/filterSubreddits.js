@@ -6,6 +6,8 @@
  */
 
 const filterSubreddits = ({ categories = '', SCHEMA = [] } = {}) => {
+  console.log('Getting subreddits...');
+
   let subreddits = [];
   SCHEMA.map((s) => {
     if (categories === s.title) {

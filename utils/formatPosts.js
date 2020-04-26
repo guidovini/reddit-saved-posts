@@ -1,4 +1,6 @@
 const formatPosts = (posts = [], postsPerBatch) => {
+  console.log('Formatting posts...');
+
   try {
     const formattedPosts = [];
     let formattedPostsLength = 0;

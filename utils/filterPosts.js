@@ -17,6 +17,8 @@ const setDate = Math.floor(currentDate) - dateOffset;
 */
 
 const filterPosts = ({ posts = [], subreddits = [] } = {}) => {
+  console.log('     Filtering posts by subreddit...');
+
   return posts
     .filter(
       (post) =>

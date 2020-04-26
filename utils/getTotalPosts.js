@@ -4,12 +4,11 @@ const calculateNextIndex = require('./calculateNextIndex');
 
 const selectedPosts = [];
 
+console.log('Getting totalPosts...');
+
 const getTotalPosts = async (totalPosts = 80, subreddits = [], after = '') => {
   try {
-    console.log('     Fetching posts...');
     const posts = await fetchPosts({ after });
-
-    console.log('     Filtering posts by subreddit...');
     const filteredPosts = filterPosts({ posts, subreddits });
     const next = calculateNextIndex({ posts, filteredPosts });
 
@@ -23,11 +22,7 @@ const getTotalPosts = async (totalPosts = 80, subreddits = [], after = '') => {
     console.log('     Posts processed: ', selectedPosts.length);
     return selectedPosts;
   } catch (error) {
-    console.log(
-      'Error at getTotalPosts.js: ',
-      'There are probably not enough posts for your request.'
-    );
-    console.log('      ', selectedPosts.length);
+    console.log('Error at getTotalPosts.js');
   }
 };
 
