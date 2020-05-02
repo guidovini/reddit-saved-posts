@@ -1,24 +1,12 @@
-const formatPosts = (posts = [], postsPerBatch) => {
+const formatPosts = (posts = [], postsPerBatch = 20) => {
   console.log('Formatting posts...');
 
-  try {
-    const formattedPosts = [];
-    let formattedPostsLength = 0;
-
-    posts.map(({ permalink, title }) => {
-      if (formattedPostsLength >= postsPerBatch) {
-        formattedPosts.push('\n\n');
-        formattedPostsLength = 0;
-      }
-
-      formattedPosts.push(`https://www.reddit.com${permalink} | ${title} \n`);
-      formattedPostsLength += 1;
-    });
-
-    return formattedPosts.join('');
-  } catch (error) {
-    console.log('Error at formatPosts.js');
-  }
+  return posts.reduce((acc, { permalink, title }, idx) => {
+    if (idx >= postsPerBatch) {
+      acc = `${acc}\n\n`;
+    }
+    return `${acc}https://www.reddit.com${permalink} | ${title} \n`;
+  }, '');
 };
 
 module.exports = formatPosts;
