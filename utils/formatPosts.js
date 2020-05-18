@@ -1,11 +1,20 @@
+const isEndOfBatch = (idx, postsPerBatch) => {
+  const isMultipleOfPostsPerBatch = idx !== 0 && idx % postsPerBatch === 0;
+  const hasReachPostsPerBatch = idx === postsPerBatch;
+
+  return isMultipleOfPostsPerBatch || hasReachPostsPerBatch;
+};
+
 const formatPosts = (posts = [], postsPerBatch = 20) => {
   console.log('Formatting posts...');
 
   return posts.reduce((acc, { permalink, title }, idx) => {
-    if (idx >= postsPerBatch) {
-      acc = `${acc}\n\n`;
+    if (isEndOfBatch(idx, postsPerBatch)) {
+      acc += '\n\n';
     }
-    return `${acc}https://www.reddit.com${permalink} | ${title} \n`;
+    const postText = `https://www.reddit.com${permalink} | ${title}`;
+
+    return `${acc + postText} \n`;
   }, '');
 };
 
