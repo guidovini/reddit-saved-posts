@@ -9,11 +9,10 @@ const SCHEMA = require('./data/schema.json');
 const categories = 'dev'; // ['dev', 'business', 'life']
 const batch = 5;
 const postsPerBatch = 20;
-
 const totalPosts = batch * postsPerBatch;
 
 const startRoutine = async (totalPosts, categories, postsPerBatch) => {
-  const subreddits = filterSubreddits({ categories, SCHEMA });
+  const subreddits = filterSubreddits(categories, SCHEMA);
   const posts = await getTotalPosts(totalPosts, subreddits);
   const formattedPosts = formatPosts(posts, postsPerBatch);
 

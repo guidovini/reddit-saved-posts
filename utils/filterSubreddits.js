@@ -5,11 +5,11 @@
  *
  */
 
-const filterSubreddits = ({ categories = '', SCHEMA = [] } = {}) => {
+const filterSubreddits = (categories = '', SCHEMA = []) => {
   console.log('Getting subreddits...');
 
   let subreddits = [];
-  SCHEMA.map((s) => {
+  SCHEMA.forEach((s) => {
     if (categories === s.title) {
       subreddits = [...s.subreddits];
     }
