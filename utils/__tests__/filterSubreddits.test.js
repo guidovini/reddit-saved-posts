@@ -14,30 +14,27 @@ const SCHEMA = [
 
 describe('filterSubreddits', () => {
   it('should filter correct subreddits', () => {
-    expect(filterSubreddits({ categories, SCHEMA })).toEqual([
-      'subr1',
-      'subr2',
-      'subr3',
-    ]);
+    const subreddits = filterSubreddits({ categories, SCHEMA });
+    expect(subreddits).toEqual(['subr1', 'subr2', 'subr3']);
   });
 
   it('should not filter incorrect subreddits', () => {
-    expect(filterSubreddits({ categories, SCHEMA })).not.toEqual([
-      'b1',
-      'b2',
-      'b3',
-    ]);
+    const subreddits = filterSubreddits({ categories, SCHEMA });
+    expect(subreddits).not.toEqual(['b1', 'b2', 'b3']);
   });
 
   it('should return empty array when no SCHEMA was provided', () => {
-    expect(filterSubreddits({ categories })).toEqual([]);
+    const subreddits = filterSubreddits({ categories });
+    expect(subreddits).toEqual([]);
   });
 
   it('should return empty array when no categories were provided', () => {
-    expect(filterSubreddits({ SCHEMA })).toEqual([]);
+    const subreddits = filterSubreddits({ SCHEMA });
+    expect(subreddits).toEqual([]);
   });
 
   it('should return empty array when no parameters', () => {
-    expect(filterSubreddits()).toEqual([]);
+    const subreddits = filterSubreddits();
+    expect(subreddits).toEqual([]);
   });
 });
