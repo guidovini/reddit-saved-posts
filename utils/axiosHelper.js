@@ -1,12 +1,12 @@
 require('dotenv').config();
 
 const axios = require('axios');
-const { URL } = require('../constants');
+const { REDDIT_URL } = require('../constants');
 
 const { TOKEN } = process.env;
 
 const axiosInstance = axios.create({
-  baseURL: URL,
+  baseURL: REDDIT_URL,
   headers: {
     Authorization: `Bearer ${TOKEN}`,
   },
