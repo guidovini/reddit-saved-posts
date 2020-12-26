@@ -5,6 +5,7 @@ const axiosHelper = require('../axiosHelper');
 const filterMultis = require('./filterMultis');
 const joinSubreddits = require('./joinSubreddits');
 
+const SCHEMA_DIR = './data/schema.json';
 const SCHEMA_TEMPLATE = [
   {
     title: 'dev',
@@ -40,14 +41,8 @@ const generateNewSchema = async () => {
 
 const saveSchemaToFile = (newSchema) => {
   const data = JSON.stringify(newSchema, null, 2);
-  fs.writeFileSync('./data/schema.json', data);
-  console.log('New Schema created at ./data/schema.json');
+  fs.writeFileSync(SCHEMA_DIR, data);
+  console.log('New Schema created at ' + SCHEMA_DIR);
 };
 
-// generateNewSchema().then((res) => saveSchemaToFile(res));
-generateNewSchema();
-
-module.exports = {
-  filterMultis,
-  generateNewSchema,
-};
+generateNewSchema().then((res) => saveSchemaToFile(res));
