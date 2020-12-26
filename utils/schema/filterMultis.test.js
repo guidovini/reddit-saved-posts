@@ -36,46 +36,25 @@ const multis = [
 ];
 
 describe('filterMultis', () => {
-  const filteredMultis = filterMultis(multis);
-
   it('should filter multis correctly', () => {
-    expect(filteredMultis).toEqual([
-      {
-        name: 'multi1',
-        subreddits: ['sub1', 'sub2'],
-      },
-      {
-        name: 'multi2',
-        subreddits: ['sub1', 'sub2'],
-      },
-    ]);
-  });
-
-  it('should not filter incorrect multis data', () => {
-    expect(filteredMultis).not.toEqual([
-      {
-        name: 'multi1',
-        subreddits: ['sub1', 'sub2'],
-        otherInfo: 'info',
-      },
-      {
-        name: 'multi2',
-        subreddits: ['sub1', 'sub2'],
-        otherInfo: 'info',
-      },
-    ]);
-  });
-
-  it('should not filter incorrect nested subreddits data', () => {
-    expect(filteredMultis).not.toEqual([
-      {
-        name: 'multi1',
-        subreddits: ['sub1', 'sub2', 'info'],
-      },
-      {
-        name: 'multi2',
-        subreddits: ['sub1', 'sub2', 'info'],
-      },
-    ]);
+    const filteredMultis = filterMultis(multis);
+    expect(filteredMultis).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "name": "multi1",
+          "subreddits": Array [
+            "sub1",
+            "sub2",
+          ],
+        },
+        Object {
+          "name": "multi2",
+          "subreddits": Array [
+            "sub1",
+            "sub2",
+          ],
+        },
+      ]
+    `);
   });
 });

@@ -1,7 +1,9 @@
 const fs = require('fs');
 
 const axiosHelper = require('../axiosHelper');
+
 const filterMultis = require('./filterMultis');
+const joinSubreddits = require('./joinSubreddits');
 
 const SCHEMA_TEMPLATE = [
   {
@@ -26,23 +28,12 @@ const fetchMultis = async () => {
   return data;
 };
 
-const getSubreddits = (filteredMultis, multisNames) => {
-  let subreddits = [];
-  filteredMultis.map((filteredMulti) => {
-    if (multisNames.includes(filteredMulti.name)) {
-      subreddits = [...subreddits, ...filteredMulti.subreddits];
-    }
-  });
-  subreddits = [...new Set(subreddits)].sort();
-  return subreddits;
-};
-
 const generateNewSchema = async () => {
   const multis = await fetchMultis();
   const filteredMultis = filterMultis(multis);
 
   const newSchema = SCHEMA_TEMPLATE.map((s) => {
-    return { ...s, subreddits: getSubreddits(filteredMultis, s.multisNames) };
+    return { ...s, subreddits: joinSubreddits(filteredMultis, s.multisNames) };
   });
   return newSchema;
 };
