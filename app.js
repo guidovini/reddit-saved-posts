@@ -6,18 +6,18 @@ const unsaveListPosts = require('./utils/unsaveListPosts');
 
 const SCHEMA = require('./data/schema.json');
 
-const categories = 'dev'; // ['dev', 'business', 'life']
+const category = 'dev'; // available categories: 'dev', 'business', 'life'
 const batch = 5;
 const postsPerBatch = 20;
-const totalPosts = batch * postsPerBatch;
+const numberOfPosts = batch * postsPerBatch;
 
-const startRoutine = async (totalPosts, categories, postsPerBatch) => {
-  const subreddits = filterSubreddits(categories, SCHEMA);
-  const posts = await getTotalPosts(totalPosts, subreddits);
+const startRoutine = async (numberOfPosts, category, postsPerBatch) => {
+  const subreddits = filterSubreddits(category, SCHEMA);
+  const posts = await getTotalPosts(numberOfPosts, subreddits);
   const formattedPosts = formatPosts(posts, postsPerBatch);
 
-  saveToFile(categories, formattedPosts);
+  saveToFile(category, formattedPosts);
   // unsaveListPosts(posts); // !!
 };
 
-startRoutine(totalPosts, categories, postsPerBatch);
+startRoutine(numberOfPosts, category, postsPerBatch);

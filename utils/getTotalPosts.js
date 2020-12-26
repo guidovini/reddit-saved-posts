@@ -6,7 +6,11 @@ const selectedPosts = [];
 
 console.log('Getting totalPosts...');
 
-const getTotalPosts = async (totalPosts = 80, subreddits = [], after = '') => {
+const getTotalPosts = async (
+  numberOfPosts = 80,
+  subreddits = [],
+  after = ''
+) => {
   try {
     const posts = await fetchPosts({ after });
     const filteredPosts = filterPosts({ posts, subreddits });
@@ -15,8 +19,8 @@ const getTotalPosts = async (totalPosts = 80, subreddits = [], after = '') => {
     selectedPosts.push(...filteredPosts);
     console.log('      ', selectedPosts.length);
 
-    if (selectedPosts.length < totalPosts) {
-      return getTotalPosts(totalPosts, subreddits, next);
+    if (selectedPosts.length < numberOfPosts) {
+      return getTotalPosts(numberOfPosts, subreddits, next);
     }
 
     console.log('     Posts processed: ', selectedPosts.length);
