@@ -1,28 +1,27 @@
 const fs = require('fs');
 
-const fetchMultis = require('./fetchMultis');
-const filterMultis = require('./filterMultis');
+const axiosHelper = require('../axiosHelper');
 
 const schemaFile = require('../../data/schema.json');
 
-// const filteredMultis = [
-//   {
-//     name: 'gg',
-//     subreddits: ['g1', 'g2']
-//   },
-//   {
-//     name: 'ww',
-//     subreddits: ['w1', 'w2', 'w3']
-//   },
-//   {
-//     name: 'ss',
-//     subreddits: ['s1', 's2', 's3']
-//   }
-// ];
+const fetchMultis = async () => {
+  const data = await axiosHelper({
+    method: 'GET',
+    url: '/api/multi/mine',
+  });
+  return data;
+};
 
-// const multisNames = ['gg', 'ss'];
-
-// console.log(getSubreddits(filteredMultis, multisNames));
+const filterMultis = (multis = []) => {
+  const filteredMultis = [];
+  multis.map((multi) => {
+    filteredMultis.push({
+      name: multi.data.name,
+      subreddits: multi.data.subreddits.map((s) => s.name),
+    });
+  });
+  return filteredMultis;
+};
 
 const getSubreddits = (filteredMultis, multisNames) => {
   let subreddits = [];
@@ -31,7 +30,7 @@ const getSubreddits = (filteredMultis, multisNames) => {
       subreddits = [...subreddits, ...filteredMulti.subreddits];
     }
   });
-  subreddits = [...new Set(subreddits)];
+  subreddits = [...new Set(subreddits)].sort();
   return subreddits;
 };
 
@@ -42,12 +41,11 @@ const createNewSchema = async (schema) => {
   const newSchema = schema.map((s) => {
     return { ...s, subreddits: getSubreddits(filteredMultis, s.multisNames) };
   });
-  // console.log(newSchema);
   return newSchema;
 };
 
 const modifySchema = (newSchema) => {
-  const data = JSON.stringify(newSchema);
+  const data = JSON.stringify(newSchema, null, 2);
   fs.writeFileSync('./data/schema.json', data);
   console.log('New Schema created at ./data/schema.json');
 };
