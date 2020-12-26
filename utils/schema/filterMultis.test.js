@@ -38,23 +38,15 @@ const multis = [
 describe('filterMultis', () => {
   it('should filter multis correctly', () => {
     const filteredMultis = filterMultis(multis);
-    expect(filteredMultis).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "name": "multi1",
-          "subreddits": Array [
-            "sub1",
-            "sub2",
-          ],
-        },
-        Object {
-          "name": "multi2",
-          "subreddits": Array [
-            "sub1",
-            "sub2",
-          ],
-        },
-      ]
-    `);
+    expect(filteredMultis).toEqual([
+      {
+        name: 'multi1',
+        subreddits: ['sub1', 'sub2'],
+      },
+      {
+        name: 'multi2',
+        subreddits: ['sub1', 'sub2'],
+      },
+    ]);
   });
 });

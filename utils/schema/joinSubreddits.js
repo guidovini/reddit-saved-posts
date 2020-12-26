@@ -1,6 +1,6 @@
 const joinSubreddits = (filteredMultis = [], multisNames = []) => {
   let subreddits = [];
-  filteredMultis.map((multi) => {
+  filteredMultis.forEach((multi) => {
     if (multisNames.includes(multi.name)) {
       subreddits = [...subreddits, ...multi.subreddits];
     }

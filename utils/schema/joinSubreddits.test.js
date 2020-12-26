@@ -20,13 +20,6 @@ const multiNames = ['multi1', 'multi3'];
 describe('joinSubreddits', () => {
   it('should join subreddits correctly', () => {
     const subreddits = joinSubreddits(filteredMultis, multiNames);
-    expect(subreddits).toMatchInlineSnapshot(`
-      Array [
-        "sub1",
-        "sub2",
-        "sub5",
-        "sub6",
-      ]
-    `);
+    expect(subreddits).toEqual(['sub1', 'sub2', 'sub5', 'sub6']);
   });
 });
