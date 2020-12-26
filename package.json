@@ -10,7 +10,7 @@
   "scripts": {
     "get-token": "node ./utils/auth/getToken.js",
     "start": "npm run get-token && node ./app.js",
-    "create-schema": "npm run get-token && node ./utils/modifySchema/modifySchema.js",
+    "create-schema": "npm run get-token && node ./utils/generateNewSchema.js",
     "test": "jest --watchAll --silent"
   },
   "devDependencies": {
