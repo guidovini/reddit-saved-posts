@@ -7,14 +7,7 @@
 
 const filterSubreddits = (category = '', SCHEMA = []) => {
   console.log('Getting subreddits...');
-
-  let subreddits = [];
-  SCHEMA.forEach((s) => {
-    if (category === s.title) {
-      subreddits = [...s.subreddits];
-    }
-  });
-  return subreddits;
+  return SCHEMA.find((s) => s.title === category)?.subreddits || [];
 };
 
 module.exports = filterSubreddits;
