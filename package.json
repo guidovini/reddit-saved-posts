@@ -9,9 +9,11 @@
   },
   "scripts": {
     "get-token": "node ./utils/auth/getToken.js",
-    "start": "npm run get-token && node ./app.js",
-    "create-schema": "npm run get-token && node ./utils/schema/generateNewSchema.js",
-    "test": "jest --watchAll --silent"
+    "create-schema": "node ./utils/schema/generateNewSchema.js",
+    "app": "node ./app.js",
+    "start": "npm run get-token && npm run create-schema && npm run app",
+    "test": "jest --silent",
+    "test:watch": "jest --watchAll --silent"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.9.0",
