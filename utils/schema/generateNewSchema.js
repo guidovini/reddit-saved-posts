@@ -3,7 +3,7 @@ const fs = require('fs');
 const axiosHelper = require('../axiosHelper');
 
 const filterMultis = require('./filterMultis');
-const joinSubreddits = require('./joinSubreddits');
+const buildSchema = require('./buildSchema');
 
 const SCHEMA_DIR = './data/schema.json';
 const SCHEMA_TEMPLATE = [
@@ -32,10 +32,7 @@ const fetchMultis = async () => {
 const generateNewSchema = async () => {
   const multis = await fetchMultis();
   const filteredMultis = filterMultis(multis);
-
-  const newSchema = SCHEMA_TEMPLATE.map((s) => {
-    return { ...s, subreddits: joinSubreddits(filteredMultis, s.multisNames) };
-  });
+  const newSchema = buildSchema(filteredMultis, SCHEMA_TEMPLATE);
   return newSchema;
 };
 
@@ -45,4 +42,6 @@ const saveSchemaToFile = (newSchema) => {
   console.log('New Schema created at ' + SCHEMA_DIR);
 };
 
-generateNewSchema().then((res) => saveSchemaToFile(res));
+generateNewSchema()
+  .then((res) => saveSchemaToFile(res))
+  .catch((err) => console.log(err));
