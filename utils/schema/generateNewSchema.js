@@ -1,7 +1,7 @@
 const fs = require('fs');
 
-const axiosHelper = require('./axiosHelper');
-const schemaFile = require('../data/schema.json');
+const axiosHelper = require('../axiosHelper');
+const schemaFile = require('../../data/schema.json');
 
 const fetchMultis = async () => {
   const data = await axiosHelper({
