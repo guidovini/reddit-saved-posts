@@ -17,7 +17,7 @@ const SCHEMA_TEMPLATE = [
   },
   {
     title: 'life',
-    multisNames: ['2_cook', '2_life'],
+    multisNames: ['2_cook', '2_life', 'e_cooking'],
   },
 ];
 
