@@ -17,7 +17,7 @@ const startRoutine = async (numberOfPosts, category, postsPerBatch) => {
   const formattedPosts = formatPosts(posts, postsPerBatch);
 
   saveToFile(category, formattedPosts);
-  // unsaveListPosts(posts); // !!
+  unsaveListPosts(posts); // !!
 };
 
 startRoutine(numberOfPosts, category, postsPerBatch);
